@@ -1,0 +1,69 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized AI Learning</title>
+<link rel="icon" href="assets/icons/book.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner container">
+    <div class="brand"><img class="logo" src="assets/icons/brain.svg" alt=""><span>AI Learn</span></div>
+    <div class="list-inline">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="learn.html">Learn</a>
+      <a href="test.html">Test</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a class="btn" href="subjects.html"><img class="icon" src="assets/icons/spark.svg" alt="">Get Started</a>
+  </div>
+</nav>
+
+<header class="hero container">
+  <span class="badge">Personalized • Simple • Clean</span>
+  <h1>Level up your learning with a minimal, focused UI.</h1>
+  <p>Pick subjects you love, take quick tests, and track progress — all in a distraction‑free interface using clean icons and thoughtful spacing.</p>
+  <div class="list-inline" style="margin-top:1rem">
+    <a class="btn" href="subjects.html"><img class="icon" src="assets/icons/design.svg" alt="">Choose Subjects</a>
+    <a class="btn secondary" href="learn.html"><img class="icon" src="assets/icons/book.svg" alt="">Start Learning</a>
+  </div>
+</header>
+<section class="container grid grid-3">
+  <article class="card">
+    <img class="icon" src="assets/icons/brain.svg" alt="">
+    <h3>Smart Recommendations</h3>
+    <p class="muted">Your picks shape the content. Tests adapt to what you choose.</p>
+  </article>
+  <article class="card">
+    <img class="icon" src="assets/icons/globe.svg" alt="">
+    <h3>Anywhere, Fast</h3>
+    <p class="muted">Pure static files. Host on GitHub Pages, Netlify, or any server.</p>
+  </article>
+  <article class="card">
+    <img class="icon" src="assets/icons/design.svg" alt="">
+    <h3>Clean & Accessible</h3>
+    <p class="muted">System fonts, high contrast, keyboard‑friendly controls.</p>
+  </article>
+</section>
+<div class="toast"></div>
+
+<footer class="footer container">
+  <div class="list-inline" style="justify-content:space-between;align-items:center">
+    <small>© <span id="year"></span> AI Learn — Personalized AI Learning</small>
+    <small>Built with ♥ for students</small>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

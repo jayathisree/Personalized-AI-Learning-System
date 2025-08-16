@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized AI Learning</title>
+<link rel="icon" href="assets/icons/book.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner container">
+    <div class="brand"><img class="logo" src="assets/icons/brain.svg" alt=""><span>AI Learn</span></div>
+    <div class="list-inline">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="learn.html">Learn</a>
+      <a href="test.html">Test</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a class="btn" href="subjects.html"><img class="icon" src="assets/icons/spark.svg" alt="">Get Started</a>
+  </div>
+</nav>
+
+<main class="container">
+  <h2>Contact</h2>
+  <p class="muted">Have feedback or want new subjects added? Ping us — we’d love to hear from you.</p>
+  <form class="grid" style="margin-top:1rem;max-width:720px" onsubmit="handleContact(event)">
+    <input class="input" name="name" placeholder="Your name" required>
+    <input class="input" name="email" type="email" placeholder="Email" required>
+    <textarea class="input" name="message" rows="5" placeholder="Your message..." required></textarea>
+    <button class="btn" type="submit"><img class="icon" src="assets/icons/mail.svg" alt="">Send</button>
+  </form>
+  <div class="card" style="margin-top:1rem;max-width:720px">
+    <h3>Other ways</h3>
+    <p><img class="icon" src="assets/icons/phone.svg" alt=""> +91 90000 00000</p>
+    <p><img class="icon" src="assets/icons/mail.svg" alt=""> support@ailearn.example</p>
+  </div>
+</main>
+<div class="toast"></div>
+
+<footer class="footer container">
+  <div class="list-inline" style="justify-content:space-between;align-items:center">
+    <small>© <span id="year"></span> AI Learn — Personalized AI Learning</small>
+    <small>Built with ♥ for students</small>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

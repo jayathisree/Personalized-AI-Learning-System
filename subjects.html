@@ -1,0 +1,76 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized AI Learning</title>
+<link rel="icon" href="assets/icons/book.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner container">
+    <div class="brand"><img class="logo" src="assets/icons/brain.svg" alt=""><span>AI Learn</span></div>
+    <div class="list-inline">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="learn.html">Learn</a>
+      <a href="test.html">Test</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a class="btn" href="subjects.html"><img class="icon" src="assets/icons/spark.svg" alt="">Get Started</a>
+  </div>
+</nav>
+
+<main class="container">
+  <h2>Select your subjects</h2>
+  <p class="muted">Toggle any number of subjects below. Your selection is stored locally.</p>
+  <div id="subjects" class="grid grid-3" style="margin-top:1rem"></div>
+  <div class="list-inline" style="margin-top:1rem">
+    <a class="btn" href="learn.html">Continue to Learning</a>
+    <a class="btn secondary" href="test.html">Skip to Test</a>
+  </div>
+</main>
+<div class="toast"></div>
+
+<footer class="footer container">
+  <div class="list-inline" style="justify-content:space-between;align-items:center">
+    <small>© <span id="year"></span> AI Learn — Personalized AI Learning</small>
+    <small>Built with ♥ for students</small>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="assets/js/app.js"></script>
+<script>
+  const root = document.getElementById('subjects');
+  const current = new Set(selectedSubjects());
+  Store.subjects.forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML = \`
+      <div style="display:flex;gap:1rem;align-items:center">
+        <img class="icon" src="\${icon(s.icon)}" alt="">
+        <div style="flex:1">
+          <h3>\${s.name}</h3>
+          <p class="muted">Click to \${current.has(s.id) ? 'remove' : 'add'}.</p>
+        </div>
+        <label class="badge">\${current.has(s.id) ? 'Selected' : 'Add'}</label>
+      </div>\`;
+    el.onclick = () => {
+      if(current.has(s.id)) current.delete(s.id); else current.add(s.id);
+      setSelectedSubjects([...current]);
+      el.querySelector('.badge').textContent = current.has(s.id) ? 'Selected' : 'Add';
+      toast('Saved selection');
+    };
+    root.appendChild(el);
+  });
+</script>
+</body>
+</html>

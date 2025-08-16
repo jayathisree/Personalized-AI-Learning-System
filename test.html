@@ -1,0 +1,70 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized AI Learning</title>
+<link rel="icon" href="assets/icons/book.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner container">
+    <div class="brand"><img class="logo" src="assets/icons/brain.svg" alt=""><span>AI Learn</span></div>
+    <div class="list-inline">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="learn.html">Learn</a>
+      <a href="test.html">Test</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a class="btn" href="subjects.html"><img class="icon" src="assets/icons/spark.svg" alt="">Get Started</a>
+  </div>
+</nav>
+
+<main class="container">
+  <h2>Quick Test</h2>
+  <p class="muted">We picked a subject for you from your selection (or a default one). Answer and submit to see your score.</p>
+  <form id="quiz"></form>
+  <div class="list-inline" style="margin-top:1rem">
+    <button class="btn" id="submitBtn" type="button">Submit</button>
+    <a class="btn secondary" href="learn.html">Back to Learning</a>
+  </div>
+  <div style="margin-top:1rem" class="card">
+    <div class="progress"><div></div></div>
+    <p id="score" style="margin:.5rem 0 0 0;">Score: —</p>
+  </div>
+</main>
+<div class="toast"></div>
+
+<footer class="footer container">
+  <div class="list-inline" style="justify-content:space-between;align-items:center">
+    <small>© <span id="year"></span> AI Learn — Personalized AI Learning</small>
+    <small>Built with ♥ for students</small>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="assets/js/app.js"></script>
+<script>
+  const subs = selectedSubjects();
+  const subjectId = (subs[0]) || 'ds';
+  const qs = Store.questions[subjectId] || [];
+  const form = document.getElementById('quiz');
+  qs.forEach((q, i) => {
+    const field = document.createElement('fieldset');
+    field.className = 'card';
+    field.innerHTML = '<legend><strong>Q'+(i+1)+'.</strong> '+q.q+'</legend>' +
+      q.options.map((opt, idx)=> \`<label style="display:block;margin:.35rem 0"><input type="radio" name="q\${i}" value="\${idx}"> \${opt}</label>\`).join('');
+    form.appendChild(field);
+  });
+  document.getElementById('submitBtn').onclick = () => gradeTest(subjectId);
+</script>
+</body>
+</html>

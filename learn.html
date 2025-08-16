@@ -1,0 +1,81 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized AI Learning</title>
+<link rel="icon" href="assets/icons/book.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner container">
+    <div class="brand"><img class="logo" src="assets/icons/brain.svg" alt=""><span>AI Learn</span></div>
+    <div class="list-inline">
+      <a href="index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="learn.html">Learn</a>
+      <a href="test.html">Test</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a class="btn" href="subjects.html"><img class="icon" src="assets/icons/spark.svg" alt="">Get Started</a>
+  </div>
+</nav>
+
+<main class="container">
+  <h2>Learning</h2>
+  <p class="muted">Short, focused notes for each selected subject. Progress saves after you take tests.</p>
+  <div id="lessons" class="grid grid-2" style="margin-top:1rem"></div>
+</main>
+<div class="toast"></div>
+
+<footer class="footer container">
+  <div class="list-inline" style="justify-content:space-between;align-items:center">
+    <small>© <span id="year"></span> AI Learn — Personalized AI Learning</small>
+    <small>Built with ♥ for students</small>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<script src="assets/js/app.js"></script>
+<script>
+  const lessons = {
+    ds: { title:'Data Structures — Basics', points:['Arrays vs Linked Lists','Stacks & Queues','Trees & Graphs','Big‑O intro'] },
+    py: { title:'Python — Essentials', points:['Data types & slicing','Functions & scopes','List/Dict comp','Modules & venv'] },
+    ml: { title:'Machine Learning — Core', points:['Supervised vs Unsupervised','Train/Val/Test','Overfit vs Regularize','Gradient Descent'] },
+    db: { title:'Databases — Primer', points:['ER modeling','Normalization','Indexes','Transactions'] },
+    os: { title:'OS — Fundamentals', points:['Processes/Threads','Scheduling','Memory mgmt','File systems'] },
+    cn: { title:'Networks — Overview', points:['OSI model','IP/TCP/UDP','Routing basics','HTTP & DNS'] },
+    ui: { title:'UI/UX — Starter', points:['Heuristics','Typography & spacing','Color & contrast','Wireframes'] },
+    dm: { title:'Digital Marketing — Intro', points:['Funnels','SEO basics','Content pillars','Analytics'] },
+  };
+  const root = document.getElementById('lessons');
+  const subs = selectedSubjects();
+  (subs.length? subs : Store.subjects.map(s=>s.id).slice(0,3)).forEach(id => {
+    const L = lessons[id];
+    if(!L) return;
+    const pct = Number(localStorage.getItem('progress_'+id) || 0);
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = \`
+      <header style="display:flex;gap:.75rem;align-items:center">
+        <img class="icon" src="\${icon('book')}" alt="">
+        <div><h3>\${L.title}</h3><small class="muted">\${pct}% complete</small></div>
+      </header>
+      <ul style="margin:.75rem 0 1rem 1rem">\${L.points.map(p=>'<li>'+p+'</li>').join('')}</ul>
+      <div class="progress"><div style="width:\${pct}%"></div></div>
+      <div class="list-inline" style="margin-top:.75rem">
+        <a class="btn secondary" href="test.html">Take Test</a>
+      </div>
+    \`;
+    root.appendChild(card);
+  });
+</script>
+</body>
+</html>
